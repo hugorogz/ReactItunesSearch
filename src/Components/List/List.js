@@ -1,17 +1,71 @@
 import React from 'react'
 import { uuid } from 'uuidv4'
+import {
+    List,
+    ListItem,
+    Avatar,
+    Typography
+} from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
 
-const List = props => {
+const useStyles = makeStyles({
+    container:{
+        display: "flex",
+        flexDirection: "column",
+        width: "70%"
+    },
+    list: { 
+        listStyleType: "none", 
+        marginLeft: "50px",
+        overflow: "auto",
+       
+    },
+    listItem: { cursor: "pointer" },
+    avatar: {
+        margin: 15
+    }
+})
+
+const ResultsList = props => {
     const { results } = props
+    const classes = useStyles()
 
     return (
-        <ul style={{ listStyleType: "none"}}>
-            {results.map(result => {
-                const id = uuid()
-                return <li key={id}>{result.trackName}</li>
-            })}
-        </ul>
+        <div className={classes.container}>
+            <Typography 
+                variant="h4" 
+                style={{
+                    color: "grey",
+                    margin: "0 10px 10px 0"
+                }}
+            >
+                Results
+            </Typography>
+
+            <List 
+                className={classes.list}
+            >
+                {results.map(result => {
+                    const id = uuid()
+
+                    return (
+                        <ListItem 
+                            key={id}
+                            className={classes.listItem}
+                        >
+                            <Avatar 
+                                alt={`${result.trackName}`} 
+                                src={`${result.artworkUrl100}`} 
+                                className={classes.avatar} 
+                            />
+                            
+                            {`${result.trackName} - ${result.artistName}`}
+                        </ListItem>
+                    )
+                })}
+            </List>
+        </div>
     )
 }
 
-export default List
+export default ResultsList

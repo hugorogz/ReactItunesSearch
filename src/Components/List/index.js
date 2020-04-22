@@ -1,3 +1,3 @@
-import List from "./List"
+import ResultsList from "./List"
 
-export default List
+export default ResultsList
