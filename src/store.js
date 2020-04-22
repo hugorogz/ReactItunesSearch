@@ -1,4 +1,4 @@
-import { createStore, roowReducer, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import itunesSearchReducer from "./redux-core/itunesSearch/reducer"
 import itunesSearchWatcher from "./redux-core/itunesSearch/sagas"

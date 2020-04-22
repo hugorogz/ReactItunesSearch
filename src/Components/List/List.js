@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 })
 
 const ResultsList = props => {
-    const { results } = props
+    const { results, handleItemSelection } = props
     const classes = useStyles()
 
     return (
@@ -52,6 +52,7 @@ const ResultsList = props => {
                         <ListItem 
                             key={id}
                             className={classes.listItem}
+                            onClick={() => handleItemSelection(result)}
                         >
                             <Avatar 
                                 alt={`${result.trackName}`} 

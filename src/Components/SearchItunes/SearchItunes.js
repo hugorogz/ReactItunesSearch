@@ -4,7 +4,6 @@ import * as itunesSearchActions from "../../redux-core/itunesSearch/actions"
 import ResultsList from "../List"
 import {
     TextField,
-    Divider,
     Typography
 } from "@material-ui/core"
 import SearchIcon from '@material-ui/icons/Search';
@@ -23,7 +22,8 @@ const styles = () => ({
 
 class SearchItunes extends React.Component {
     state={
-        searchTerm: ""
+        searchTerm: "",
+        selectedItem: {}
     }
 
     handleSearchTermChange = e => {
@@ -40,37 +40,49 @@ class SearchItunes extends React.Component {
         searchItunes(searchTerm)
     }
 
+    handleItemSelection = item => {
+        this.setState({
+            selectedItem: item
+        })
+    }
+
     render() {
         const { searchTerm } = this.state
         const { results, classes } = this.props
 
         return(
-            <div className={classes.divContainer}>
-                <div style={{ display: "flex", flexDirection: "column"}}>
-                    <Typography 
-                        variant="h4" 
-                        style={{
-                            color: "silver",
-                            marginBottom: 50}}
-                    >
-                        Search iTunes Content
-                    </Typography>
+            <>
+                <div className={classes.divContainer}>
+                    <div style={{ display: "flex", flexDirection: "column"}}>
+                        <Typography 
+                            variant="h4" 
+                            style={{
+                                color: "silver",
+                                marginBottom: 50}}
+                        >
+                            Search iTunes Content
+                        </Typography>
 
-                    <TextField 
-                        type="text" 
-                        value={searchTerm} 
-                        placeholder="Search in iTunes..." 
-                        onChange={e => this.handleSearchTermChange(e)} 
-                        InputProps={{
-                            endAdornment: <SearchIcon />
-                        }}
+                        <TextField 
+                            type="text" 
+                            value={searchTerm} 
+                            placeholder="Search in iTunes..." 
+                            onChange={e => this.handleSearchTermChange(e)} 
+                            InputProps={{
+                                endAdornment: <SearchIcon />
+                            }}
+                        />
+                    </div>
+
+                    <ResultsList 
+                        results={searchTerm.length ? results : []} 
+                        handleItemSelection={this.handleItemSelection}
                     />
                 </div>
 
-                <Divider />
-
-                <ResultsList results={searchTerm.length ? results : []} />
-            </div>
+                <span>{this.state.selectedItem.trackName}</span>
+            </>
+            
         )
     }
 }
