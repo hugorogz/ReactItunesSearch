@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as itunesSearchActions from "../../redux-core/itunesSearch/actions"
 import ResultsList from "../List"
+import DisplayCard from "../DIsplayCard"
 import {
     TextField,
     Typography
@@ -23,10 +24,21 @@ const styles = () => ({
 class SearchItunes extends React.Component {
     state={
         searchTerm: "",
-        selectedItem: {}
+        selectedItem: null,
+        audioUrl: "",
+        play: false,
+        pause: true,
+        previewAudio: null
     }
 
     handleSearchTermChange = e => {
+
+        if(e.target.value === "") {
+            this.setState({
+                searchTerm: ""
+            })
+        }
+
         this.setState({
             searchTerm: e.target.value
         })
@@ -42,12 +54,52 @@ class SearchItunes extends React.Component {
 
     handleItemSelection = item => {
         this.setState({
-            selectedItem: item
+            selectedItem: item,
+            audioUrl: item.previewUrl,
+            play: false,
+            pause: true,
         })
     }
 
+    handlePlayButton = () => {
+        const { audioUrl, previewAudio } = this.state
+        const newPreviewAudio = new Audio(audioUrl)
+
+        if(previewAudio) {
+            previewAudio.pause()
+            
+            this.setState({
+                previewAudio: null
+            })
+        }
+        
+        this.setState({
+            play: true,
+            pause: false,
+            previewAudio: newPreviewAudio
+        }, () => {
+            this.playAudio()
+        })
+    }
+
+    handlePauseButton = () => {
+        this.setState({
+            play: false,
+            pause:true,
+        }, () => {
+            this.playAudio()
+        })
+    }
+
+    playAudio = () => {
+        const { play, previewAudio } = this.state
+
+        return play ? previewAudio.play() : previewAudio.pause()
+    }
+
+
     render() {
-        const { searchTerm } = this.state
+        const { searchTerm, selectedItem, play } = this.state
         const { results, classes } = this.props
 
         return(
@@ -80,7 +132,15 @@ class SearchItunes extends React.Component {
                     />
                 </div>
 
-                <span>{this.state.selectedItem.trackName}</span>
+                {/* card of selectedItem */}
+                {selectedItem ? (
+                    <DisplayCard 
+                        selectedItem={selectedItem}
+                        play={play}
+                        handlePlayButton={this.handlePlayButton}
+                        handlePauseButton={this.handlePauseButton}
+                    />
+                ) : []}
             </>
             
         )
