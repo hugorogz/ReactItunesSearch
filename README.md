@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## iTunes search with React, Redux, Redux-Saga, Material UI
+
+![alt text](https://github.com/hugorogz/ReactItunesSearch/blob/master/Capture.png?raw=true)
 
 ## Available Scripts
 
