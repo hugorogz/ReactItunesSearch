@@ -1,6 +1,6 @@
 ## iTunes search with React, Redux, Redux-Saga, Material UI
 
-![alt text](https://github.com/hugorogz/ReactItunesSearch/blob/master/Capture.png?raw=true)
+![alt text](https://github.com/hugorogz/ReactItunesSearch/blob/master/Capture.PNG)
 
 ## Available Scripts
 
