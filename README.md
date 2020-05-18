@@ -1,12 +1,5 @@
 ## Basic Example - Create-React-App: iTunes search with React, Redux, Redux-Saga, Material UI
 
-"@material-ui/core": "^4.9.11",
-"@material-ui/icons": "^4.9.1",
-"react-redux": "^7.2.0",
-"redux": "^4.0.5",
-"redux-saga": "^1.1.3",
-"uuidv4": "^6.0.7"
-
 ![alt text](https://github.com/hugorogz/ReactItunesSearch/blob/master/Capture.PNG)
 
 ## Available Scripts
