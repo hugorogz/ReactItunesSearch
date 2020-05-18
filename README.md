@@ -1,4 +1,4 @@
-## Basic Example - iTunes search with React, Redux, Redux-Saga, Material UI
+## Basic Example - Create-React-App: iTunes search with React, Redux, Redux-Saga, Material UI
 
 ![alt text](https://github.com/hugorogz/ReactItunesSearch/blob/master/Capture.PNG)
 
